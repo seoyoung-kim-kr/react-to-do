@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddTodo from "../AddTodo/AddTodo";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -13,13 +14,20 @@ export default function TodoList() {
       status: "active",
     },
   ]);
+
+  const handleAdd = (todo) => {
+    setTodos([...todos, todo]);
+    // 새로운 투두를 todos에 업데이트 해야 함
+  };
+
   return (
     <section>
       <ul>
         {todos.map((i) => (
-          <li id={item.id}>item.text</li>
+          <li id={i.id}>{i.text}</li>
         ))}
       </ul>
+      <AddTodo onAdd={handleAdd} />
     </section>
   );
 }
